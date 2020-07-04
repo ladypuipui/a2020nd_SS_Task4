@@ -1,4 +1,4 @@
 language: bash
 script:
   - echo "test: gcd.sh"
-  - ./gcd.sh 100 25
+  - ./test.sh
