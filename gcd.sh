@@ -1,20 +1,29 @@
-#!/bin/sh
+#!/bin/bash
 
-echo "Please enter numbers a & b !"
-read a b
 
-m=$a
+set -eu
 
-if [ $b -lt $m ];then
-    m=$b
+check=`expr $1 + $2`
+expr 1 + $check >/dev/null 2>&1
+case $? in
+  0 ) echo "[\$?=$?] 数字が入力されました -> $check" ;;
+  * ) echo "[\$?=$?] 数字以外が入力されました -> $check" ;;
+esac
+
+m=$1
+
+if [ $2 -lt $m ];then
+    m=$2
 fi
+
+set +e
 
 while [ $m -ne 0 ]
     do
-        x=`expr $a % $m`
-        y=`expr $b % $m`
+        x=`expr $1 % $m`
+        y=`expr $2 % $m`
     if [ $x -eq 0 -a $y -eq 0 ];then
-        echo gcd of $a and $b is $m
+        echo gcd of $1 and $2 is $m
         break
         fi
     m=`expr $m - 1`
